@@ -7,7 +7,7 @@ dotenv.config();
 
 const app = express();
 
-const port = 3000;
+const port = 5173;
 
 app.use(express.json()); //allows us to accept json data from req body
 
