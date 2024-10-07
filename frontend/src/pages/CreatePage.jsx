@@ -2,14 +2,13 @@ import {
   Box,
   Button,
   Container,
-  FormControl,
-  FormLabel,
   Input,
   NumberDecrementStepper,
   NumberIncrementStepper,
   NumberInput,
   NumberInputField,
   NumberInputStepper,
+  useToast,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { useProductStore } from "../store/product";
@@ -23,11 +22,20 @@ const CreatePage = () => {
 
   const { createProduct } = useProductStore();
 
+  const toast = useToast();
+
   const handleSubmit = async () => {
     const { success, message } = await createProduct(newProduct);
 
-    console.log("Success: ", success);
-    console.log("Message: ", message);
+    toast({
+      title: success ? "Success" : "Error",
+      description: message,
+      status: success ? "success" : "error",
+      duration: 3000,
+      isClosable: true,
+    });
+
+    setNewProduct({ name: "", price: "", image: "" });
   };
 
   return (
@@ -50,9 +58,8 @@ const CreatePage = () => {
           }
         />
 
-        <NumberInput max={50000} min={10}>
+        <NumberInput max={50000} min={10} value={newProduct.price}>
           <NumberInputField
-            value={newProduct.price}
             onChange={(e) =>
               setNewProduct({ ...newProduct, price: e.target.value })
             }

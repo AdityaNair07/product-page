@@ -29,14 +29,16 @@ const Navbar = () => {
         alignItems={"center"}
         justifyContent={"space-between"}
       >
-        <Text
-          bgGradient="linear(to-l, #7928CA, #FF0080)"
-          bgClip="text"
-          fontSize="4xl"
-          fontWeight="extrabold"
-        >
-          Product Page
-        </Text>
+        <Link to={"/"}>
+          <Text
+            bgGradient="linear(to-l, #7928CA, #FF0080)"
+            bgClip="text"
+            fontSize="4xl"
+            fontWeight="extrabold"
+          >
+            Product Page
+          </Text>
+        </Link>
         <HStack spacing={10}>
           <Link to="/create">
             <FiPlusCircle title="+" size={30} color="" />
